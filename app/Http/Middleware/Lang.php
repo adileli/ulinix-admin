@@ -17,7 +17,7 @@ class Lang
     public function handle($request, Closure $next)
     {
         $user = $request->user('admin');
-        App::setLocale($user->locale);
+        App::setLocale($user->locale ?? 'ug');
         return $next($request);
     }
 }

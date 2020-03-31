@@ -13,10 +13,10 @@
 .layuimini-container .table-search-fieldset {margin: 0;border: 1px solid #e6e6e6;padding: 10px 20px 5px 20px;color: #6b6b6b;}
 
 html, body {
-    font-family: "ALKATIP Basma Tom";
+    font-family: "ALKATIP Basma Tom", Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
 }
 @font-face {
-    font-family: "ALKATIP Basma Tom", Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    font-family: "ALKATIP Basma Tom";
     src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
 }
 

@@ -17,7 +17,8 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        html, body {width: 100%;height: 100%;overflow: hidden}
+        html, body {width: 100%;height: 100%;overflow: hidden;font-family: "ALKATIP Basma Tom", Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; }
+        @font-face {font-family: "ALKATIP Basma Tom";  src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */  }
         body {background: #009688;}
         body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
         .layui-container {width: 100%;height: 100%;overflow: hidden}
@@ -34,7 +35,7 @@
     </style>
 </head>
 <body>
-<div class="layui-container layui-anim layui-anim-upbit">
+<div class="layui-container layui-anim layui-anim-upbit rtl">
     <div class="admin-login-background">
         <div class="layui-form login-form">
             <form class="layui-form" action="">
@@ -53,7 +54,7 @@
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="{{ __('admin.remember_me') }}">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">{{ __('admin.login') }}</button>
+                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">{{ __('auth.login') }}</button>
                 </div>
             </form>
         </div>

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'ئئسىم',
-    'password' => 'مەخپى شېفىر',
-    'remember_me' => 'ئەستە ساقلىش',
+    'name' => 'ئەزالىق نامى',
+    'password' => 'مەخپى نۇمۇر',
+    'remember_me' => 'ئەستە ساقلاش',
     'homepage' => 'باش بەت'
 ];
