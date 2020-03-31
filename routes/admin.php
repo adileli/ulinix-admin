@@ -7,7 +7,7 @@ Route::get('login', 'LoginController@showLoginForm')->name('login');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout')->name('logout');
 
-Route::middleware('admin.auth')->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::get('/get-system-init', 'IndexController@getSystemInit')->name('getSystemInit');
     Route::post('/change/locale/{locale}', 'IndexController@changeLocale')->name('changeLocale');
 
