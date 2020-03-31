@@ -1,0 +1,77 @@
+.layuimini-content-page{background-color:#f2f2f2!important;}
+.layuimini-container {border:1px solid #f2f2f2;border-radius:5px;background-color:#f2f2f2}
+.layuimini-main {margin:10px 10px 10px 10px;border:5px solid #ffffff;border-radius:5px;background-color:#ffffff}
+.layui-breadcrumb>* {font-size: 13px;!important;}
+
+/**必填红点 */
+.layuimini-form>.layui-form-item>.required:after {content:'*';color:red;position:absolute;margin-left:4px;font-weight:bold;line-height:1.8em;top:6px;right:5px;}
+.layuimini-form>.layui-form-item>.layui-form-label {width:120px !important;}
+.layuimini-form>.layui-form-item>.layui-input-block {margin-left:150px !important;}
+.layuimini-form>.layui-form-item>.layui-input-block >tip {display:inline-block;margin-top:10px;line-height:10px;font-size:10px;color:#a29c9c;}
+
+/**搜索框*/
+.layuimini-container .table-search-fieldset {margin: 0;border: 1px solid #e6e6e6;padding: 10px 20px 5px 20px;color: #6b6b6b;}
+
+html, body {
+    font-family: "ALKATIP Basma Tom";
+}
+@font-face {
+    font-family: "ALKATIP Basma Tom", Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+.rtl .layui-body {
+    left: 0;
+    right: 200px;
+}
+
+.rtl .layui-side {
+    left: auto;
+    right: 0;
+}
+
+.rtl.layuimini-mini .layui-body {
+    left: 0 !important;
+    right: 60px;
+}
+
+.rtl .layui-logo {
+    right: 0;
+    left: auto;
+}
+
+.rtl .layui-layout-right{
+    left: auto !important;
+    right: 295px !important;
+}
+
+.rtl.layuimini-mini .layui-layout-right{
+    left: auto !important;
+    right: 155px !important;
+}
+
+.rtl .layui-nav.layui-layout-right.layuimini-header-menu.mobile.layui-hide-xs {
+    transition: all .2s;
+}
+
+.rtl .layuimini-tool {
+    left: auto;
+    right: 235px;
+}
+
+.rtl.layuimini-mini .layuimini-tool{
+    left: auto !important;
+    right: 95px;
+}
+.rtl.layuimini-mini .layuimini-menu-left .layui-nav .layui-nav-item a {
+    padding-right: 25px !important;
+}
+
+.rtl .layui-layout-left {
+    left: 0 !important;
+}
+

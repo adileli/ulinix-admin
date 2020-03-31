@@ -8,5 +8,10 @@ Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout')->name('logout');
 
 Route::middleware('admin.auth')->group(function () {
-    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/get-system-init', 'IndexController@getSystemInit')->name('getSystemInit');
+    Route::post('/change/locale/{locale}', 'IndexController@changeLocale')->name('changeLocale');
+
+    Route::get('/', 'IndexController@admin')->name('admin');
+    Route::get('/index', 'IndexController@index')->name('index');
+    Route::get('/menus', 'AdminMenuController@index')->name('adminMenu');
 });

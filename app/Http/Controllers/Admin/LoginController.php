@@ -29,9 +29,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        dump(Auth::guard('admin')->user());
-
-        return view('admin.login');
+        return view('admin.auth.login');
     }
 
     public function redirectTo()
