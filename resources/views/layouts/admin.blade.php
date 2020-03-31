@@ -3,9 +3,9 @@
 <?php $direction = in_array(app()->getLocale(), ['ug']) ? 'rtl' : ''; $isRtl = in_array(app()->getLocale(), ['ug']) ? true : false;?>
 <head>
     <meta charset="utf-8">
-    <title>{{ config('app.name', 'Ulinix') }}</title>
-    <meta name="keywords" content="ulinix">
-    <meta name="description" content="ulinix">
+    <title>{{ Arr::get($setting, 'value.sitename', config('app.name', 'Ulinix')) }}</title>
+    <meta name="keywords" content="{{ Arr::get($setting, 'value.keywords', '') }}">
+    <meta name="description" content="{{ Arr::get($setting, 'value.description', '') }}">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">

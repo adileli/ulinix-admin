@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'placeholder'     => '请输入 :attribute。',
     'accepted'        => '您必须接受 :attribute。',
     'active_url'      => ':attribute 不是一个有效的网址。',
     'after'           => ':attribute 必须要晚于 :date。',

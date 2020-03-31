@@ -75,3 +75,10 @@ html, body {
     left: 0 !important;
 }
 
+.rtl .layui-form-label {
+    float: right;
+}
+
+.rtl .layuimini-form>.layui-form-item>.layui-input-block {
+    margin-right: 150px !important;
+}

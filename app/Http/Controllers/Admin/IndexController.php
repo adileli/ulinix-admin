@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
+use App\Model\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
     public function admin()
     {
-        return view('layouts.admin');
+        $setting = Config::where('name', 'setting')->first();
+        return view('layouts.admin', ['setting' => $setting]);
     }
 
     public function index()
@@ -29,13 +32,15 @@ class IndexController extends Controller
     }
 
     public function getSystemInit(){
+        $setting = Config::where('name', 'setting')->first();
+
         $homeInfo = [
             'title' => trans('admin.homepage'),
             'href'  => route('admin.index'),
         ];
         $logoInfo = [
-            'title' => config('app.name'),
-            'image' => asset('images/logo.png'),
+            'title' => Arr::get($setting, 'value.sitename', config('app.name')),
+            'image' => asset(Arr::get($setting, 'value.logo', 'images/logo.png')),
         ];
         $menuInfo = $this->getMenuList();
         $systemInit = [

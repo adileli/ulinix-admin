@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'placeholder'     => ':attribute كىرگۈزۈڭ',
     'accepted'        => ':attribute چوقۇم قوشۇلىشىڭىز كېرەك.',
     'active_url'      => ':attribute ئىناۋەتلىك توربەت ئادىرىسى ئەمەس.',
     'after'           => ':attribute چوقۇم :date دىن كىيىن بۇلىشى كېرەك.',
