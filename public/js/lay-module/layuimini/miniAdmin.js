@@ -164,9 +164,12 @@ layui.define(["jquery", "miniMenu", "miniPage", "miniTheme"], function (exports)
          * @param loadingTime
          */
         deleteLoader: function (loadingTime) {
-            setTimeout(function () {
+            // setTimeout(function () {
+            //     $('.layuimini-loader').fadeOut();
+            // }, loadingTime * 1000)
+            $(window).ready(function() {
                 $('.layuimini-loader').fadeOut();
-            }, loadingTime * 1000)
+            });
         },
 
         /**
