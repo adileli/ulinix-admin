@@ -23,7 +23,12 @@
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_parent') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="pid" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_parent')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->pid }}">
+            <select name="pid" lay-filter="pid">
+                <option value="0">{{ __('admin.form.menu_root') }}</option>
+                @foreach($menus as $m)
+                    <option value="{{ $m->id }}" @if($menu->pid == $m->id) selected @endif>{{ $m->title_ug . ' ('.$m->title_cn . ')' }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 

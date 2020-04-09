@@ -20,6 +20,7 @@ return [
         'menu_name_cn' => '菜单中文名称',
         'menu_name_ug' => '菜单维文名称',
         'menu_parent' => '上级菜单',
+        'menu_root' => '根菜单',
         'menu_url' => '菜单地址',
         'menu_icon' => '菜单图标',
         'menu_target' => '跳转方式',
