@@ -43,7 +43,7 @@
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="setting">{{ __('admin.submit') }}</button>
+                    <button class="layui-btn" lay-submit lay-filter="setting">{{ __('admin.form.submit') }}</button>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 $('#logo-input').val(res.path);
             }
             ,error: function(){
-                parent.layer.msg(`{{ __('admin.error') }}`);
+                parent.layer.msg(`{{ __('admin.form.error') }}`);
             }
         });
 
@@ -76,7 +76,7 @@
         form.on('submit(setting)', function (data) {
             let url = `{{ route('admin.setting') }}`;
             $.post(url, data.field, res => {
-                parent.layer.msg(`{{ __('admin.success') }}`);
+                parent.layer.msg(`{{ __('admin.form.success') }}`);
                 window.location.reload();
             });
 

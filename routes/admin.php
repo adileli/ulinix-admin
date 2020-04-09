@@ -13,7 +13,16 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/', 'IndexController@admin')->name('admin');
     Route::get('/index', 'IndexController@index')->name('index');
-    Route::get('/menus', 'AdminMenuController@index')->name('adminMenu');
+
+    Route::group(['prefix' => '/menus', 'as' => 'menu.'], function () {
+        Route::get('', 'AdminMenuController@index')->name('index');
+        Route::get('/create', 'AdminMenuController@create')->name('create');
+        Route::post('/store', 'AdminMenuController@store')->name('store');
+        Route::get('/edit/{id}', 'AdminMenuController@edit')->name('edit');
+        Route::post('/update/{id}', 'AdminMenuController@update')->name('update');
+        Route::post('/delete/{id}', 'AdminMenuController@destroy')->name('delete');
+    });
+
     Route::get('/setting', 'ConfigController@index')->name('setting');
     Route::post('/setting', 'ConfigController@store')->name('setting');
     Route::post('/upload/logo', 'ConfigController@uploadLogo')->name('uploadLogo');

@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Model\AdminMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AdminMenuController extends Controller
 {
+    private $tableName = 'admin_menus';
+
     /**
      * Display a listing of the resource.
      *
@@ -15,30 +18,35 @@ class AdminMenuController extends Controller
      */
     public function index()
     {
-        $menus = AdminMenu::all();
+        $menus = DB::table($this->tableName)->get();
 
-        return view('admin.menu.index');
+        return view('admin.menu.index', ['menus' => $menus]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $menus = DB::table($this->tableName)->get();
+
+        return view('admin.menu.create', ['menus' => $menus]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $fields = $request->all();
+        $fields['status'] = isset($fields['status']) ? 1 : 0;
+
+        $request->validate([
+            'title_ug' => 'required|max:255',
+            'title_cn' => 'required|max:255',
+            'href' => 'required',
+            'pid' => 'required|integer',
+            'target' => 'required',
+            'sort' => 'required|integer',
+        ]);
+
+        $result = DB::table($this->tableName)->insert($fields);
+
+        return response()->json($result);
     }
 
     /**
@@ -52,37 +60,39 @@ class AdminMenuController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\AdminMenu  $adminMenu
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AdminMenu $adminMenu)
+    public function edit($id)
     {
-        //
+        $menu = DB::table($this->tableName)->find($id);
+        $menus = DB::table($this->tableName)->get();
+
+        return view('admin.menu.edit', ['menus' => $menus, 'menu' => $menu]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AdminMenu  $adminMenu
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AdminMenu $adminMenu)
+    public function update(Request $request, $id)
     {
-        //
+        $fields = $request->all();
+        $fields['status'] = isset($fields['status']) ? 1 : 0;
+
+        $request->validate([
+            'title_ug' => 'required|max:255',
+            'title_cn' => 'required|max:255',
+            'href' => 'required',
+            'pid' => 'required|integer',
+            'target' => 'required',
+            'sort' => 'required|integer',
+        ]);
+
+        $result = DB::table($this->tableName)
+            ->where('id', $id)
+            ->update($fields);
+
+        return response()->json($result);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\AdminMenu  $adminMenu
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AdminMenu $adminMenu)
+    public function destroy($id)
     {
-        //
+        $result = DB::table($this->tableName)->delete($id);
+        DB::table($this->tableName)->where('pid', '=', $id)->delete();
+        return response()->json($result);
     }
 }

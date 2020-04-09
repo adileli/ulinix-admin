@@ -20,6 +20,14 @@ html, body {
     src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
 }
 
+.pa-5 {
+    padding: 5px;
+}
+
+.pa-20 {
+    padding: 20px;
+}
+
 .rtl {
     direction: rtl !important;
 }
@@ -81,4 +89,50 @@ html, body {
 
 .rtl .layuimini-form>.layui-form-item>.layui-input-block {
     margin-right: 150px !important;
+}
+
+.rtl .layui-layer-setwin {
+    right: auto;
+    left: 15px;
+}
+
+.rtl .layui-layer-title {
+    padding: 0 20px 0 80px;
+}
+
+.rtl .layui-input-block {
+    margin-left: 0;
+    margin-right: 110px;
+}
+
+.rtl .layui-input,
+.rtl .layui-textarea {
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.rtl .layui-layer-dialog .layui-layer-padding {
+    padding: 20px 55px 20px 20px
+}
+
+.rtl .layui-layer-ico {
+    left: 0;
+    right: 15px;
+}
+
+.rtl .layui-iconpicker-search .layui-input {
+    padding-right: 30px;
+}
+
+.rtl .layui-btn-group .layui-btn {
+    border-right: 1px solid rgba(255,255,255,.5);
+    border-left: none;
+}
+
+.rtl .layui-btn-group .layui-btn:last-child{
+    border-radius: 2px 0 0 2px;
+}
+
+.rtl .layui-btn-group .layui-btn:first-child {
+    border-radius: 0 2px 2px 0;
 }
