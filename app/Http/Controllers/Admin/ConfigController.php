@@ -7,25 +7,43 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ConfigController extends Controller
 {
     public function uploadLogo(Request $request)
     {
-        $setting = Config::where('name', 'setting')->first();
-        $logo = Arr::get($setting, 'value.logo', false);
-        if ($logo) {
-            Storage::delete($logo);
+        if ($request->hasFile('file')) {
+            $picture = $request->file('file');
+            if (!$picture->isValid()) {
+                abort(400);
+            }
+            $setting = Config::where('name', 'setting')->first();
+            $oldPicture = Arr::get($setting, 'value.logo', false);
+            if ($oldPicture) {
+                $oldPicture = Str::after($oldPicture, '/storage/');
+                Storage::disk('public')->delete($oldPicture);
+            }
+
+            $fileName = 'logo.'.$picture->getClientOriginalExtension();
+
+            // 图片保存路径
+            $savePath = 'system/' . $fileName;
+            // Web 访问路径
+            $webPath = '/storage/' . $savePath;
+            if (Storage::disk('public')->has($savePath)) {
+                Storage::delete($savePath);
+            }
+            // 否则执行保存操作，保存成功将访问路径返回给调用方
+            if ($picture->storePubliclyAs('system', $fileName, ['disk' => 'public'])) {
+                $setting->value = array_merge($setting->value, ['logo' => $webPath]);
+                $setting->save();
+                return response()->json(compact('webPath','savePath'));
+            }
+            abort(500);
+        } else {
+            abort(400);
         }
-
-        $file = $request->file('file');
-        $fileName = 'logo.'.$file->getClientOriginalExtension();
-        $file->storeAs('public/system', $fileName);
-        $path = 'storage/system/'.$fileName;
-
-        $setting->value = array_merge($setting->value, ['logo' => 'storage/system/'.$fileName]);
-        $setting->save();
-        return response()->json(['path' => $path]);
     }
 
     /**
