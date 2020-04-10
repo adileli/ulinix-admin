@@ -10,7 +10,7 @@
 
 配置 .env 文件
 
-初始化数据库 `artisan db:seed`
+初始化数据库 `artisan migrate && artisan db:seed`
 
 上传文件目录移动到公共目录 `artisan storage:link`
 
