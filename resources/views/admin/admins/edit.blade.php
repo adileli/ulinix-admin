@@ -23,6 +23,13 @@
 
         @if(Auth::user()->is_super_admin)
             <div class="layui-form-item">
+                <label class="layui-form-label">{{ __('admin.form.super_admin') }}</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="is_super_admin" lay-skin="switch" @if($admin->is_super_admin) checked @endif>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
                 <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
                 <div class="layui-input-block">
                     @foreach($menus as $menu)
@@ -57,7 +64,7 @@
         form.on('submit(save)', function(data){
             $.post(data.form.action, data.field, res => {
                 layer.msg('@lang('admin.form.success')', {icon: 1});
-                window.location.reload()
+                // window.location.reload()
             }).fail(res => {
                 layer.msg('@lang('admin.form.error')', {icon: 2});
 

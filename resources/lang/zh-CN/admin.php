@@ -22,6 +22,7 @@ return [
         'enabled' => '开启',
         'disabled' => '关闭',
         'permission' => '权限',
+        'super_admin' => '超级管理员',
         'menu_name_cn' => '菜单中文名称',
         'menu_name_ug' => '菜单维文名称',
         'menu_parent' => '上级菜单',

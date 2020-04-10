@@ -21,6 +21,13 @@
 
         @if(Auth::user()->is_super_admin)
             <div class="layui-form-item">
+                <label class="layui-form-label">{{ __('admin.form.super_admin') }}</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="is_super_admin" lay-skin="switch">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
                 <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
                 <div class="layui-input-block">
                     @foreach($menus as $menu)

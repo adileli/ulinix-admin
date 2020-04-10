@@ -38,10 +38,17 @@ class AdminsController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            Admin::CREATED_AT => '',
+            Admin::UPDATED_AT => '',
         ];
         $request->validate($cols);
         $fields['password'] = bcrypt($fields['password']);
         $fields[Admin::CREATED_AT] = $fields[Admin::UPDATED_AT] = time();
+
+        if (isset($fields['is_super_admin'])) {
+            $fields['is_super_admin'] = true;
+            $cols['is_super_admin'] = 'required';
+        }
 
         $result = DB::table($this->tableName)->insertGetId(Arr::only($fields, array_keys($cols)));
 
@@ -62,7 +69,11 @@ class AdminsController extends Controller
         $admin = DB::table($this->tableName)->find($id);
         $menus = DB::table('admin_menus')->where('status', 1)->get();
         $permissions = DB::table('admin_permissions')->where('admin_id', $id)->first();
-        $permissions = explode('|', $permissions->menu_ids);
+        if ($permissions) {
+            $permissions = explode('|', $permissions->menu_ids);
+        } else {
+            $permissions = [];
+        }
 
         return view('admin.admins.edit', ['admin' => $admin, 'menus' => $menus, 'permissions' => $permissions]);
     }
@@ -74,12 +85,22 @@ class AdminsController extends Controller
         $cols = [
             'name' => 'required',
             'email' => 'required|email',
+            Admin::UPDATED_AT => '',
         ];
         $request->validate($cols);
         if (isset($fields['password']) && !empty($fields['password'])) {
             $fields['password'] = bcrypt($fields['password']);
             $cols['password'] = 'required';
         }
+
+        if (isset($fields['is_super_admin'])) {
+            $fields['is_super_admin'] = true;
+            $cols['is_super_admin'] = 'required';
+        } else {
+            $fields['is_super_admin'] = false;
+            $cols['is_super_admin'] = 'required';
+        }
+
         $fields[Admin::UPDATED_AT] = time();
 
         $result = DB::table($this->tableName)
