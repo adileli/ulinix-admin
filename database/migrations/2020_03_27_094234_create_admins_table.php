@@ -20,7 +20,8 @@ class CreateAdminsTable extends Migration
             $table->string('locale', 20)->default('ug');
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->integer('created_at')->default(0);
+            $table->integer('updated_at')->default(0);
         });
     }
 

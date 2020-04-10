@@ -24,7 +24,8 @@ class CreateAdminMenusTable extends Migration
             $table->integer('sort')->default(0)->comment('排序');
             $table->tinyInteger('status')->default(1)->comment('状态(0:禁用,1:启用)');
             $table->string('remark', 255)->nullable()->comment('备注信息');
-            $table->timestamps();
+            $table->integer('created_at')->default(0);
+            $table->integer('updated_at')->default(0);
         });
     }
 

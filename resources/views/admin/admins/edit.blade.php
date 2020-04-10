@@ -15,7 +15,18 @@
         <div class="layui-form-item">
             <label class="layui-form-label">{{ __('admin.password') }}</label>
             <div class="layui-input-block">
-                <input type="password" name="password" lay-verify="required" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.password')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.password')]) }}" class="layui-input">
+                <input type="password" name="password" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.password')]) }}" class="layui-input">
+                <div class="layui-word-aux">{{ __('admin.tip.password_empty') }}</div>
+
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
+            <div class="layui-input-block">
+                @foreach($menus as $menu)
+                    <input type="checkbox" name="permission[{{$menu->id}}]" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}" @if(in_array($menu->id, $permissions)) checked @endif>
+                @endforeach
             </div>
         </div>
 

@@ -21,6 +21,7 @@ return [
         'submit' => '提交',
         'enabled' => '开启',
         'disabled' => '关闭',
+        'permission' => '权限',
         'menu_name_cn' => '菜单中文名称',
         'menu_name_ug' => '菜单维文名称',
         'menu_parent' => '上级菜单',
@@ -40,5 +41,8 @@ return [
     ],
     'confirm' => [
         'delete' => '真的删除吗？'
+    ],
+    'tip' => [
+        'password_empty' => '如果不需要更改密码请留空',
     ]
 ];

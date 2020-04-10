@@ -11,4 +11,6 @@ class Config extends Model
     protected $casts = [
         'value' => 'array'
     ];
+
+    protected $dateFormat = 'U';
 }

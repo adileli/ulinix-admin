@@ -13,7 +13,11 @@ class AdminPermissionTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('admin_permissions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('admin_id')->unique()->comment('管理员ID');
+            $table->string('menu_ids', 255)->comment('菜单ID');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class AdminPermissionTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('admin_permissions');
     }
 }

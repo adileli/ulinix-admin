@@ -20,6 +20,15 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
+            <div class="layui-input-block">
+                @foreach($menus as $menu)
+                    <input type="checkbox" name="permission[{{$menu->id}}]" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
+                @endforeach
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="save">{{ __('admin.form.submit') }}</button>
             </div>

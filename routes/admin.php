@@ -15,7 +15,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/index', 'IndexController@index')->name('index');
 
     Route::group(['prefix' => '/admins', 'as' => 'admins.'], function () {
-        Route::get('', 'AdminsController@index')->name('index');
+        Route::get('', 'AdminsController@index')->name('index')->middleware('check.take.route');
         Route::get('/create', 'AdminsController@create')->name('create');
         Route::post('/store', 'AdminsController@store')->name('store');
         Route::get('/edit/{id}', 'AdminsController@edit')->name('edit');
@@ -24,7 +24,7 @@ Route::middleware('auth:admin')->group(function () {
     });
 
     Route::group(['prefix' => '/menus', 'as' => 'menu.'], function () {
-        Route::get('', 'AdminMenuController@index')->name('index');
+        Route::get('', 'AdminMenuController@index')->name('index')->middleware('check.take.route');
         Route::get('/create', 'AdminMenuController@create')->name('create');
         Route::post('/store', 'AdminMenuController@store')->name('store');
         Route::get('/edit/{id}', 'AdminMenuController@edit')->name('edit');
@@ -32,7 +32,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/delete/{id}', 'AdminMenuController@destroy')->name('delete');
     });
 
-    Route::get('/setting', 'ConfigController@index')->name('setting');
+    Route::get('/setting', 'ConfigController@index')->name('setting')->middleware('check.take.route');
     Route::post('/setting', 'ConfigController@store')->name('setting');
     Route::post('/upload/logo', 'ConfigController@uploadLogo')->name('uploadLogo');
 });

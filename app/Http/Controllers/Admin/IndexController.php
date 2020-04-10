@@ -7,6 +7,7 @@ use App\Model\Admin;
 use App\Model\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -53,11 +54,25 @@ class IndexController extends Controller
 
     // 获取菜单列表
     private function getMenuList(){
+        $admin = Auth::guard('admin')->user();
+        $permission = DB::table('admin_permissions')
+            ->where('admin_id', $admin->id)
+            ->first();
+        $menuIds = [];
+        if (!empty($permission->menu_ids)) {
+            $menuIds = explode('|', $permission->menu_ids);
+        }
+
         $menuList = DB::table('admin_menus')
             ->select('*')
             ->where('status', 1)
-            ->orderBy('sort', 'desc')
-            ->get();
+            ->orderBy('sort', 'desc');
+
+        if ($menuIds) {
+            $menuList->whereIn('id', $menuIds);
+        }
+
+        $menuList = $menuList->get();
 
         $menuList = $this->buildMenuChild(0, $menuList);
         return $menuList;

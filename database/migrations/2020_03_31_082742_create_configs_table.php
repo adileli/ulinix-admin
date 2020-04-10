@@ -17,7 +17,8 @@ class CreateConfigsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 50)->comment('配置名称');
             $table->longText('value')->nullable()->comment('配置项');
-            $table->timestamps();
+            $table->integer('created_at')->default(0);
+            $table->integer('updated_at')->default(0);
         });
     }
 
