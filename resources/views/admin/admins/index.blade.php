@@ -47,15 +47,13 @@
          */
         table.on('toolbar(admins-table-filter)', function (obj) {
             if (obj.event === 'create') {   // 监听添加操作
-                let openWH = miniPage.getOpenWidthHeight(),
-                    $this = $(this);
+                let $this = $(this);
 
                 $.get($this.data('url'), function(response){
                     var index = layer.open({
                         type: 1,
                         maxmin: true,
-                        area: [openWH[0] + 'px', openWH[1] + 'px'],
-                        offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                        area: ['700px'],
                         title: '@lang('admin.create_admin')',
                         content: response
                     });
@@ -84,15 +82,13 @@
                 });
             }
             if (layEvent === 'edit') {
-                let openWH = miniPage.getOpenWidthHeight(),
-                    $this = $(this),
+                let $this = $(this),
                     url = 'admin/admins/edit/' + data.id;
 
                 $.get(url, {}, function(response){
                     var index = layer.open({
                         type: 1,
-                        area: [openWH[0] + 'px', openWH[1] + 'px'],
-                        offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                        area: ['700px'],
                         maxmin: true,
                         title: '@lang('admin.form.edit')',
                         content: response

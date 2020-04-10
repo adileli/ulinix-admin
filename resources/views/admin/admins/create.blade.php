@@ -41,22 +41,6 @@
         // 当前弹出层，防止ID被覆盖
         var parentIndex = layer.index;
 
-        //监听提交
-        form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            }, function () {
-
-                // 关闭弹出层
-                layer.close(index);
-                layer.close(parentIndex);
-
-            });
-
-
-            return false;
-        });
-
         form.on('submit(save)', function(data){
             $.post(data.form.action, data.field, res => {
                 layer.msg('@lang('admin.form.success')', {icon: 1});
