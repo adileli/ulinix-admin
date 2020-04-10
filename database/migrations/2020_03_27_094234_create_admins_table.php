@@ -18,6 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('locale', 20)->default('ug');
+            $table->tinyInteger('is_super_admin')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->integer('created_at')->default(0);

@@ -17,7 +17,7 @@ html, body {
 }
 @font-face {
     font-family: "ALKATIP Basma Tom";
-    src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
+    src: local("alkatip basma tom"),url(/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
 }
 
 .pa-5 {

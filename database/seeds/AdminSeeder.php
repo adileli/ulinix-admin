@@ -11,6 +11,7 @@ class AdminSeeder extends Seeder
         $admin->name = 'admin';
         $admin->email = 'admin@admin.com';
         $admin->password = bcrypt('admin888');
+        $admin->is_super_admin = true;
 
         $admin->save();
     }

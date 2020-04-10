@@ -19,14 +19,16 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
-            <div class="layui-input-block">
-                @foreach($menus as $menu)
-                    <input type="checkbox" name="permission[{{$menu->id}}]" lay-skin="primary" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
-                @endforeach
+        @if(Auth::user()->is_super_admin)
+            <div class="layui-form-item">
+                <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
+                <div class="layui-input-block">
+                    @foreach($menus as $menu)
+                        <input type="checkbox" name="permission[{{$menu->id}}]" lay-skin="primary" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="layui-form-item">
             <div class="layui-input-block">
