@@ -2,8 +2,11 @@
 
 return [
     'name' => 'ئەزالىق نامى',
+    'email' => 'ئېلخەت',
     'password' => 'مەخپى نۇمۇر',
     'remember_me' => 'ئەستە ساقلاش',
+    'user' => 'ئەزا',
+    'admin' => 'باشقۇرغۇچى',
     'homepage' => 'باش بەت',
     'site_name' => 'توربەت نامى',
     'url' => 'توربەت ئادرېس',
@@ -11,6 +14,7 @@ return [
     'meta_keywords' => 'ھالقىلىق سۆز META',
     'meta_description' => 'توربەت چۈشەندۈرۈش META',
     'upload_image' => 'رەسىم يوللاش',
+    'create_admin' => 'باشقۇرغۇچى قوشۇش',
     'form' => [
         'success' => 'مۇۋاپىقىيەتلىك بولدى',
         'error' => 'مەغلۇب بولدى',

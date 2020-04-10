@@ -2,8 +2,11 @@
 
 return [
     'name' => '用户名',
+    'email' => '邮箱',
     'password' => '密码',
     'remember_me' => '记住我',
+    'user' => '用户',
+    'admin' => '管理员',
     'homepage' => '首页',
     'site_name' => '网站名称',
     'url' => '网站域名',
@@ -11,6 +14,7 @@ return [
     'meta_keywords' => 'META关键词',
     'meta_description' => 'META描述',
     'upload_image' => '上传图片',
+    'create_admin' => '添加管理员',
     'form' => [
         'success' => '成功',
         'error' => '失败',

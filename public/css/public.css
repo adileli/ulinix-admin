@@ -136,3 +136,15 @@ html, body {
 .rtl .layui-btn-group .layui-btn:first-child {
     border-radius: 0 2px 2px 0;
 }
+
+.rtl .layui-table-tool-temp {
+    padding-right: 0;
+}
+.rtl .layui-table-tool-self {
+    right: auto;
+    left: 17px;
+}
+
+.rtl .layui-table-page .layui-laypage {
+    direction: ltr;
+}

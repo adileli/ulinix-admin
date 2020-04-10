@@ -157,7 +157,7 @@
         miniAdmin.render(options);
 
         $('.login-out').on("click", function () {
-            let url = `{{ route('logout') }}`;
+            let url = `{{ route('admin.logout') }}`;
 
             $.post(url, res => {
                 window.location = `{{ route('admin.login') }}`;

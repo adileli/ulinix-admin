@@ -51,7 +51,7 @@
                     <input type="password" name="password" lay-verify="required|password" placeholder="{{ __('admin.password') }}" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="{{ __('admin.remember_me') }}">
+                    <input type="checkbox" name="remember" value="true" lay-skin="primary" title="{{ __('admin.remember_me') }}">
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">{{ __('auth.login') }}</button>

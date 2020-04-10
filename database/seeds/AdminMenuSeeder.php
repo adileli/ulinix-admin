@@ -21,6 +21,14 @@ class AdminMenuSeeder extends Seeder
 
         $manageMenu = new AdminMenu();
         $manageMenu->pid = $sysMenu->id;
+        $manageMenu->title_ug = 'باشقۇرغۇچى باشقۇرۇش';
+        $manageMenu->title_cn = '管理员管理';
+        $manageMenu->icon = 'fa fa-user-secret';
+        $manageMenu->href = 'admin/admins';
+        $manageMenu->save();
+
+        $manageMenu = new AdminMenu();
+        $manageMenu->pid = $sysMenu->id;
         $manageMenu->title_ug = 'سەھىپە باشقۇرۇش';
         $manageMenu->title_cn = '菜单管理';
         $manageMenu->icon = 'fa fa-window-maximize';

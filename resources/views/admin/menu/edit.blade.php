@@ -1,4 +1,5 @@
-<form class="layui-form pa-20" method="post" action="{{ route('admin.menu.update', ['id' => $menu->id]) }}">
+<div class="layuimini-main">
+    <form class="layui-form pa-20" method="post" action="{{ route('admin.menu.update', ['id' => $menu->id]) }}">
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_name_cn') }}</label>
         <div class="layui-input-block">
@@ -73,7 +74,7 @@
         </div>
     </div>
 </form>
-
+</div>
 <script>
     var menus = @json($menus)
 
