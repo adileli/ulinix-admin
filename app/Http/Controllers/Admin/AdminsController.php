@@ -25,7 +25,7 @@ class AdminsController extends Controller
 
     public function create(Router $router)
     {
-        $menus = DB::table('admin_menus')->get();
+        $menus = DB::table('admin_menus')->where('status', 1)->get();
 
         return view('admin.admins.create', ['menus' => $menus]);
     }
@@ -60,7 +60,7 @@ class AdminsController extends Controller
     public function edit($id)
     {
         $admin = DB::table($this->tableName)->find($id);
-        $menus = DB::table('admin_menus')->get();
+        $menus = DB::table('admin_menus')->where('status', 1)->get();
         $permissions = DB::table('admin_permissions')->where('admin_id', $id)->first();
         $permissions = explode('|', $permissions->menu_ids);
 

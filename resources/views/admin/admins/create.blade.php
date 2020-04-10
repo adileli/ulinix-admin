@@ -23,7 +23,7 @@
             <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
             <div class="layui-input-block">
                 @foreach($menus as $menu)
-                    <input type="checkbox" name="permission[{{$menu->id}}]" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
+                    <input type="checkbox" name="permission[{{$menu->id}}]" lay-skin="primary" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
                 @endforeach
             </div>
         </div>
