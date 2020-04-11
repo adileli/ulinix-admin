@@ -27,6 +27,7 @@
             <select name="pid" lay-filter="pid">
                 <option value="0">{{ __('admin.form.menu_root') }}</option>
                 @foreach($menus as $m)
+                    @if($menu->id == $m->id) @continue @endif
                     <option value="{{ $m->id }}" @if($menu->pid == $m->id) selected @endif>{{ $m->title_ug . ' ('.$m->title_cn . ')' }}</option>
                 @endforeach
             </select>

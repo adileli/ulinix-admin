@@ -43,7 +43,7 @@
                                         <div>
                                             <input type="checkbox" name="permission[{{$childMenu['id']}}]" lay-skin="primary" title="{{  $childMenu['title_ug'] . ' ('.$childMenu['title_cn'] . ')'  }}" @if(in_array($childMenu['id'], $permissions)) checked @endif>
                                             @if(isset($childMenu['child']))
-                                                <div style="padding: 5px 15px">
+                                                <div style="padding: 5px 40px">
                                                     @foreach($childMenu['child'] as $m)
                                                         <input type="checkbox" name="permission[{{$m['id']}}]" lay-skin="primary" title="{{  $m['title_ug'] . ' ('.$m['title_cn'] . ')'  }}" @if(in_array($m['id'], $permissions)) checked @endif>
                                                     @endforeach
