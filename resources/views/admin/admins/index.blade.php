@@ -53,7 +53,7 @@
                     var index = layer.open({
                         type: 1,
                         maxmin: true,
-                        area: ['700px'],
+                        area: ['60%', '90%'],
                         title: '@lang('admin.create_admin')',
                         content: response
                     });
@@ -88,7 +88,7 @@
                 $.get(url, {}, function(response){
                     var index = layer.open({
                         type: 1,
-                        area: ['700px'],
+                        area: ['60%', '90%'],
                         maxmin: true,
                         title: '@lang('admin.form.edit')',
                         content: response

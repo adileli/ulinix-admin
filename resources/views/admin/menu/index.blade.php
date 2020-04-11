@@ -70,7 +70,7 @@
             $.get($this.data('url'), function(response){
                 layer.open({
                     type: 1,
-                    area: ['700px', '500px'],
+                    area: ['60%', '90%'],
                     maxmin: true,
                     title: '@lang('admin.form.create')',
                     content: response
@@ -99,7 +99,7 @@
                 $.get(url, {}, function(response){
                     layer.open({
                         type: 1,
-                        area: ['700px', '500px'],
+                        area: ['60%', '90%'],
                         maxmin: true,
                         title: '@lang('admin.form.edit')',
                         content: response
