@@ -8,9 +8,7 @@ use App\Model\AdminMenu;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 
 class AdminsController extends Controller
 {
@@ -72,7 +70,7 @@ class AdminsController extends Controller
         $menus = DB::table('admin_menus')->select('*')->where('status', 1)->orderBy('sort', 'desc')->get();
         $permissions = DB::table('admin_permissions')->where('admin_id', $id)->first();
         if ($permissions) {
-            $permissions = explode('|', $permissions->menu_ids);
+            $permissions = explode('|', $permissions['menu_ids']);
         } else {
             $permissions = [];
         }

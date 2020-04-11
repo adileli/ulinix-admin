@@ -60,8 +60,8 @@ class IndexController extends Controller
             ->where('admin_id', $admin->id)
             ->first();
         $menuIds = [];
-        if (!empty($permission->menu_ids)) {
-            $menuIds = explode('|', $permission->menu_ids);
+        if (!empty($permission['menu_ids'])) {
+            $menuIds = explode('|', $permission['menu_ids']);
         }
 
         $menuList = DB::table('admin_menus')
@@ -77,22 +77,5 @@ class IndexController extends Controller
 
         $menuList = AdminMenu::buildMenuChild(0, $menuList);
         return $menuList;
-    }
-
-    //递归获取子菜单
-    private function buildMenuChild($pid, $menuList){
-        $treeList = [];
-        foreach ($menuList as $v) {
-            if ($pid == $v->pid) {
-                $node = (array)$v;
-                $child = $this->buildMenuChild($v->id, $menuList);
-                if (!empty($child)) {
-                    $node['child'] = $child;
-                }
-                // todo 后续此处加上用户的权限判断
-                $treeList[] = $node;
-            }
-        }
-        return $treeList;
     }
 }

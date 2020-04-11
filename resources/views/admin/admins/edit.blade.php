@@ -1,15 +1,15 @@
 <div class="layuimini-main">
-    <form class="layui-form layuimini-form" method="post" action="{{ route('admin.admins.update', ['id' => $admin->id]) }}">
+    <form class="layui-form layuimini-form" method="post" action="{{ route('admin.admins.update', ['id' => $admin['id']]) }}">
         <div class="layui-form-item">
             <label class="layui-form-label required">{{ __('admin.name') }}</label>
             <div class="layui-input-block">
-                <input type="text" name="name" lay-verify="required" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.name')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.name')]) }}" value="{{ $admin->name }}" class="layui-input">
+                <input type="text" name="name" lay-verify="required" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.name')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.name')]) }}" value="{{ $admin['name'] }}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">{{ __('admin.email') }}</label>
             <div class="layui-input-block">
-                <input type="email" name="email" lay-verify="required|email" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.email')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.email')]) }}" value="{{ $admin->email }}" class="layui-input">
+                <input type="email" name="email" lay-verify="required|email" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.email')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.email')]) }}" value="{{ $admin['email'] }}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -25,7 +25,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">{{ __('admin.form.super_admin') }}</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" name="is_super_admin" lay-skin="switch" @if($admin->is_super_admin) checked @endif>
+                    <input type="checkbox" name="is_super_admin" lay-skin="switch" @if($admin['is_super_admin']) checked @endif>
                 </div>
             </div>
 

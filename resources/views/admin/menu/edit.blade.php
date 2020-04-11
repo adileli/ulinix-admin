@@ -1,23 +1,23 @@
 <div class="layuimini-main">
-    <form class="layui-form pa-20" method="post" action="{{ route('admin.menu.update', ['id' => $menu->id]) }}">
+    <form class="layui-form pa-20" method="post" action="{{ route('admin.menu.update', ['id' => $menu['id']]) }}">
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_name_cn') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="title_cn" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_name_cn')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->title_cn }}">
+            <input type="text" name="title_cn" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_name_cn')]) }}" autocomplete="off" class="layui-input" value="{{ $menu['title_cn'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_name_ug') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="title_ug" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_name_ug')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->title_ug }}">
+            <input type="text" name="title_ug" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_name_ug')]) }}" autocomplete="off" class="layui-input" value="{{ $menu['title_ug'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_url') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="href" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_url')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->href }}">
+            <input type="text" name="href" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_url')]) }}" autocomplete="off" class="layui-input" value="{{ $menu['href'] }}">
         </div>
     </div>
 
@@ -27,8 +27,8 @@
             <select name="pid" lay-filter="pid">
                 <option value="0">{{ __('admin.form.menu_root') }}</option>
                 @foreach($menus as $m)
-                    @if($menu->id == $m->id) @continue @endif
-                    <option value="{{ $m->id }}" @if($menu->pid == $m->id) selected @endif>{{ $m->title_ug . ' ('.$m->title_cn . ')' }}</option>
+                    @if($menu['id'] == $m['id']) @continue @endif
+                    <option value="{{ $m['id'] }}" @if($menu['pid'] == $m['id']) selected @endif>{{ $m->title_ug . ' ('.$m->title_cn . ')' }}</option>
                 @endforeach
             </select>
         </div>
@@ -37,35 +37,35 @@
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_icon') }}</label>
         <div class="layui-input-block">
-            <input name="icon" type="text" id="iconPicker" lay-filter="iconPicker" class="hide" value="{{ $menu->icon }}">
+            <input name="icon" type="text" id="iconPicker" lay-filter="iconPicker" class="hide" value="{{ $menu['icon'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.menu_target') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="target" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_target')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->target }}">
+            <input type="text" name="target" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.menu_target')]) }}" autocomplete="off" class="layui-input" value="{{ $menu['target'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.sort') }}</label>
         <div class="layui-input-block">
-            <input type="text" name="sort" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.sort')]) }}" autocomplete="off" class="layui-input" value="{{ $menu->sort }}">
+            <input type="text" name="sort" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.sort')]) }}" autocomplete="off" class="layui-input" value="{{ $menu['sort'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.status') }}</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="status" lay-skin="switch" lay-filter="status" {{ $menu->status == 1 ? 'checked' : '' }} value="{{ $menu->status }}">
+            <input type="checkbox" name="status" lay-skin="switch" lay-filter="status" {{ $menu['status'] == 1 ? 'checked' : '' }} value="{{ $menu['status'] }}">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">{{ __('admin.form.remark') }}</label>
         <div class="layui-input-block">
-            <textarea name="remark" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.remark')]) }}" class="layui-textarea">{{ $menu->remark }}</textarea>
+            <textarea name="remark" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.form.remark')]) }}" class="layui-textarea">{{ $menu['remark'] }}</textarea>
         </div>
     </div>
 

@@ -27,7 +27,7 @@
                 <select name="pid" lay-filter="pid">
                     <option value="0">{{ __('admin.form.menu_root') }}</option>
                     @foreach($menus as $menu)
-                        <option value="{{ $menu->id }}">{{ $menu->title_ug . ' ('.$menu->title_cn . ')' }}</option>
+                        <option value="{{ $menu['id'] }}">{{ $menu['title_ug'] . ' ('.$menu['title_cn'] . ')' }}</option>
                     @endforeach
                 </select>
             </div>

@@ -13,9 +13,9 @@ class AdminMenu extends Model
     public static function buildMenuChild($pid, $menuList){
         $treeList = [];
         foreach ($menuList as $v) {
-            if ($pid == $v->pid) {
+            if ($pid == $v['pid']) {
                 $node = (array)$v;
-                $child = self::buildMenuChild($v->id, $menuList);
+                $child = self::buildMenuChild($v['id'], $menuList);
                 if (!empty($child)) {
                     $node['child'] = $child;
                 }
