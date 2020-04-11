@@ -35,10 +35,19 @@
                             <legend>
                                 <input type="checkbox" name="permission[{{$menu['id']}}]" title="{{  $menu['title_ug'] . ' ('.$menu['title_cn'] . ')'  }}">
                             </legend>
-                            @if($menu['child'])
+                            @if(isset($menu['child']))
                                 <div class="layui-field-box">
-                                    @foreach($menu['child'] as $m)
-                                        <input type="checkbox" name="permission[{{$m['id']}}]" lay-skin="primary" title="{{  $m['title_ug'] . ' ('.$m['title_cn'] . ')'  }}">
+                                    @foreach($menu['child'] as $childMenu)
+                                        <div>
+                                            <input type="checkbox" name="permission[{{$childMenu['id']}}]" lay-skin="primary" title="{{  $childMenu['title_ug'] . ' ('.$childMenu['title_cn'] . ')'  }}">
+                                            @if(isset($childMenu['child']))
+                                                <div style="padding: 5px 15px">
+                                                    @foreach($childMenu['child'] as $m)
+                                                        <input type="checkbox" name="permission[{{$m['id']}}]" lay-skin="primary" title="{{  $m['title_ug'] . ' ('.$m['title_cn'] . ')'  }}">
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
                                     @endforeach
                                 </div>
                             @endif
