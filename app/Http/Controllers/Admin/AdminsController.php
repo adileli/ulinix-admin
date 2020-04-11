@@ -21,7 +21,6 @@ class AdminsController extends Controller
         return view('admin.admins.index', ['admins' => $admins]);
     }
 
-
     public function create(Router $router)
     {
         $menus = DB::table('admin_menus')->select('*')->where('status', 1)->orderBy('sort', 'desc')->get();
