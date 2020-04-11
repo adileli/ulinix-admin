@@ -156,7 +156,6 @@ html, body {
 
 .rtl .layui-form-checkbox[lay-skin=primary] span {
     padding-right: 0;
-    padding-left: 15px;
 }
 
 .rtl .layui-form-checkbox[lay-skin=primary] i {

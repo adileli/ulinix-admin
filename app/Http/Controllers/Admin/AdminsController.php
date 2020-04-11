@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
+use App\Model\AdminMenu;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Arr;
@@ -25,7 +26,8 @@ class AdminsController extends Controller
 
     public function create(Router $router)
     {
-        $menus = DB::table('admin_menus')->where('status', 1)->get();
+        $menus = DB::table('admin_menus')->select('*')->where('status', 1)->orderBy('sort', 'desc')->get();
+        $menus = AdminMenu::buildMenuChild(0, $menus);
 
         return view('admin.admins.create', ['menus' => $menus]);
     }
@@ -67,13 +69,15 @@ class AdminsController extends Controller
     public function edit($id)
     {
         $admin = DB::table($this->tableName)->find($id);
-        $menus = DB::table('admin_menus')->where('status', 1)->get();
+        $menus = DB::table('admin_menus')->select('*')->where('status', 1)->orderBy('sort', 'desc')->get();
         $permissions = DB::table('admin_permissions')->where('admin_id', $id)->first();
         if ($permissions) {
             $permissions = explode('|', $permissions->menu_ids);
         } else {
             $permissions = [];
         }
+
+        $menus = AdminMenu::buildMenuChild(0, $menus);
 
         return view('admin.admins.edit', ['admin' => $admin, 'menus' => $menus, 'permissions' => $permissions]);
     }

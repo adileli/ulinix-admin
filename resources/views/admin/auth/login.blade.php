@@ -18,7 +18,7 @@
     <![endif]-->
     <style>
         html, body {width: 100%;height: 100%;overflow: hidden;font-family: "ALKATIP Basma Tom", Avenir, Helvetica Neue, Arial, Helvetica, sans-serif; }
-        @font-face {font-family: "ALKATIP Basma Tom";  src: local("alkatip basma tom"),url(/css/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */  }
+        @font-face {font-family: "ALKATIP Basma Tom";  src: local("alkatip basma tom"),url(/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */  }
         body {background: #009688;}
         body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
         .layui-container {width: 100%;height: 100%;overflow: hidden}

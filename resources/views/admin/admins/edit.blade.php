@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">{{ __('admin.email') }}</label>
+            <label class="layui-form-label required">{{ __('admin.email') }}</label>
             <div class="layui-input-block">
                 <input type="email" name="email" lay-verify="required|email" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.email')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.email')]) }}" value="{{ $admin->email }}" class="layui-input">
             </div>
@@ -31,9 +31,25 @@
 
             <div class="layui-form-item">
                 <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
-                <div class="layui-input-block">
+                <div class="layui-clear">
                     @foreach($menus as $menu)
-                        <input type="checkbox" name="permission[{{$menu->id}}]" lay-skin="primary" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}" @if(in_array($menu->id, $permissions)) checked @endif>
+                        <fieldset class="layui-elem-quote layui-quote-nm">
+                            <legend>
+                                <input type="checkbox" name="permission[{{$menu['id']}}]" title="{{  $menu['title_ug'] . ' ('.$menu['title_cn'] . ')'  }}" @if(in_array($menu['id'], $permissions)) checked @endif>
+                            </legend>
+                            @if(isset($menu['child']))
+                                <div class="layui-field-box">
+                                    @foreach($menu['child'] as $childMenu)
+                                        <input type="checkbox" name="permission[{{$childMenu['id']}}]" lay-skin="primary" title="{{  $childMenu['title_ug'] . ' ('.$childMenu['title_cn'] . ')'  }}" @if(in_array($childMenu['id'], $permissions)) checked @endif>
+                                        @if(isset($childMenu['child']))
+                                            @foreach($childMenu['child'] as $m)
+                                                <input type="checkbox" name="permission[{{$m['id']}}]" lay-skin="primary" title="{{  $m['title_ug'] . ' ('.$m['title_cn'] . ')'  }}" @if(in_array($m['id'], $permissions)) checked @endif>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
+                        </fieldset>
                     @endforeach
                 </div>
             </div>
@@ -64,7 +80,7 @@
         form.on('submit(save)', function(data){
             $.post(data.form.action, data.field, res => {
                 layer.msg('@lang('admin.form.success')', {icon: 1});
-                // window.location.reload()
+                window.location.reload()
             }).fail(res => {
                 layer.msg('@lang('admin.form.error')', {icon: 2});
 

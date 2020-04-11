@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
+use App\Model\AdminMenu;
 use App\Model\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -74,7 +75,7 @@ class IndexController extends Controller
 
         $menuList = $menuList->get();
 
-        $menuList = $this->buildMenuChild(0, $menuList);
+        $menuList = AdminMenu::buildMenuChild(0, $menuList);
         return $menuList;
     }
 

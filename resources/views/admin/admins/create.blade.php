@@ -29,9 +29,20 @@
 
             <div class="layui-form-item">
                 <label class="layui-form-label">{{ __('admin.form.permission') }}</label>
-                <div class="layui-input-block">
+                <div class="layui-clear">
                     @foreach($menus as $menu)
-                        <input type="checkbox" name="permission[{{$menu->id}}]" lay-skin="primary" title="{{  $menu->title_ug . ' ('.$menu->title_cn . ')'  }}">
+                        <fieldset class="layui-elem-quote layui-quote-nm">
+                            <legend>
+                                <input type="checkbox" name="permission[{{$menu['id']}}]" title="{{  $menu['title_ug'] . ' ('.$menu['title_cn'] . ')'  }}">
+                            </legend>
+                            @if($menu['child'])
+                                <div class="layui-field-box">
+                                    @foreach($menu['child'] as $m)
+                                        <input type="checkbox" name="permission[{{$m['id']}}]" lay-skin="primary" title="{{  $m['title_ug'] . ' ('.$m['title_cn'] . ')'  }}">
+                                    @endforeach
+                                </div>
+                            @endif
+                        </fieldset>
                     @endforeach
                 </div>
             </div>
