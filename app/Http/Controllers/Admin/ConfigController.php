@@ -13,6 +13,8 @@ use Illuminate\Support\Str;
 
 class ConfigController extends Controller
 {
+    private $tableName = 'configs';
+
     public function uploadLogo(Request $request)
     {
         if ($request->hasFile('file')) {
@@ -34,7 +36,7 @@ class ConfigController extends Controller
             $webPath = '/storage/' . $savePath;
             // 否则执行保存操作，保存成功将访问路径返回给调用方
             if ($picture->storeAs('system', $fileName, ['disk' => 'public'])) {
-                DB::table('configs')->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
+                DB::table($this->tableName)->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
 
                 return response()->json(compact('webPath','savePath'));
             }
@@ -55,7 +57,7 @@ class ConfigController extends Controller
     {
         $fields = $request->only(['site_name', 'url', 'logo', 'keywords', 'description']);
         foreach ($fields as $key => $field) {
-            DB::table('configs')->where('name', $key)->update(
+            DB::table($this->tableName)->where('name', $key)->update(
                 [
                     'value' => $field,
                     'updated_at' => time()
@@ -66,7 +68,7 @@ class ConfigController extends Controller
 
     public function configs()
     {
-        $configs = DB::table('configs')->get();
+        $configs = DB::table($this->tableName)->get();
 
         return view('admin.config.configs', ['configs' => $configs]);
     }
@@ -77,7 +79,7 @@ class ConfigController extends Controller
             $fields = $request->only(['name', 'value']);
             $fields['created_at'] = $fields['updated_at'] = time();
 
-            $res = DB::table('configs')->insert($fields);
+            $res = DB::table($this->tableName)->insert($fields);
 
             return response()->json($res);
         }
@@ -85,10 +87,16 @@ class ConfigController extends Controller
         return view('admin.config.create');
     }
 
+    public function deleteConfigs($id)
+    {
+        $result = DB::table($this->tableName)->delete($id);
+        return response()->json($result);
+    }
+
     public function storeConfigs(Request $request)
     {
         $fields = $request->all();
-        $res = DB::table('configs')->where('id', $fields['id'])->update([$fields['field'] => $fields['value'], 'updated_at' => time()]);
+        $res = DB::table($this->tableName)->where('id', $fields['id'])->update([$fields['field'] => $fields['value'], 'updated_at' => time()]);
 
         return response()->json($res);
     }
@@ -98,7 +106,7 @@ class ConfigController extends Controller
         $configsPath = config_path() . '/configs.php';
         $this->deleteConfigsFile();
 
-        $configs = DB::table('configs')->pluck('value', 'name')->toArray();
+        $configs = DB::table($this->tableName)->pluck('value', 'name')->toArray();
         File::put($configsPath, '<?php return '.var_export($configs, true).';'.PHP_EOL);
 
         $this->configCache();

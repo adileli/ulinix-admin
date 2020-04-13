@@ -10,16 +10,23 @@
 
             <table class="layui-hide" id="configs" lay-filter="configs" data-url="{{ route('admin.configs') }}"></table>
 
+            <script type="text/html" id="operatingTableBar">
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">{{ __('admin.form.delete') }}</a>
+            </script>
+
             <fieldset class="layui-elem-field">
                 <legend>{{ __('admin.cache.zone') }}</legend>
                 <div class="layui-field-box">
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post" data-url="{{ route('admin.putConfigsFile') }}">{{ __('admin.cache.put_file') }}</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post" data-url="{{ route('admin.configCache') }}">{{ __('admin.cache.cache_config') }}</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post" data-url="{{ route('admin.routeCache') }}">{{ __('admin.cache.cache_route') }}</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post e-cache" data-url="{{ route('admin.putConfigsFile') }}">{{ __('admin.cache.put_file') }}</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post e-cache" data-url="{{ route('admin.configCache') }}">{{ __('admin.cache.cache_config') }}</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs btn-post e-cache" data-url="{{ route('admin.routeCache') }}">{{ __('admin.cache.cache_route') }}</button>
                     <hr>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post" data-url="{{ route('admin.deleteConfigsFile') }}">{{ __('admin.cache.delete_file') }}</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post" data-url="{{ route('admin.configClear') }}">{{ __('admin.cache.clear_config') }}</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post" data-url="{{ route('admin.routeClear') }}">{{ __('admin.cache.clear_route') }}</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post e-clear" data-url="{{ route('admin.deleteConfigsFile') }}">{{ __('admin.cache.delete_file') }}</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post e-clear" data-url="{{ route('admin.configClear') }}">{{ __('admin.cache.clear_config') }}</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-post e-clear" data-url="{{ route('admin.routeClear') }}">{{ __('admin.cache.clear_route') }}</button>
+                    <hr>
+                    <button type="button" class="layui-btn layui-btn-xs quick-cache">{{ __('admin.cache.quick_cache') }}</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-xs quick-clear">{{ __('admin.cache.quick_clear') }}</button>
                 </div>
             </fieldset>
         </div>
@@ -39,6 +46,7 @@
                 {field:'id', align: 'center', width:80, title: 'ID'},
                 {field:'name', align: 'center', title: '@lang('admin.configs_name')', event: 'name', style:'cursor: pointer;'},
                 {field:'value', align: 'center', title: '@lang('admin.configs_value')', event: 'value', style:'cursor: pointer;'},
+                {title: '@lang('admin.form.operating')', templet: '#operatingTableBar', width: 80},
             ]],
             page: true
         });
@@ -109,6 +117,17 @@
                         value: value
                     });
                 });
+            } else if (obj.event === 'delete') {
+                layer.confirm(`@lang('admin.confirm.delete')`, function(index){
+                    obj.del();
+                    layer.close(index);
+                    let url = 'admin/configs/delete/' + data.id;
+                    $.post(url, res => {
+                        layer.msg('@lang('admin.form.success')', {icon: 1})
+                    }).fail(res => {
+                        layer.msg('@lang('admin.form.error')', {icon: 2})
+                    });
+                });
             }
         });
 
@@ -116,6 +135,14 @@
             $.post($(this).data('url'), function () {
                 layer.msg(`{{ __('admin.form.success') }}`, {icon: 1});
             });
+        });
+
+        $('.quick-cache').on('click', function () {
+            $('.e-cache').trigger('click');
+        });
+
+        $('.quick-clear').on('click', function () {
+            $('.e-clear').trigger('click');
         });
     });
 </script>

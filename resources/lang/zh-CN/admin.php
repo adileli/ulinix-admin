@@ -56,5 +56,7 @@ return [
         'clear_config' => '清空 configs 缓存',
         'cache_route' => '缓存路由',
         'clear_route' => '清空路由缓存',
+        'quick_cache' => '一键缓存',
+        'quick_clear' => '一键清空缓存'
     ]
 ];
