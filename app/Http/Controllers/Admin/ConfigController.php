@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Config;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,8 +20,7 @@ class ConfigController extends Controller
             if (!$picture->isValid()) {
                 abort(400);
             }
-            $setting = Config::where('name', 'setting')->first();
-            $oldPicture = Arr::get($setting, 'value.logo', false);
+            $oldPicture = Arr::get(configs(), 'logo', false);
             if ($oldPicture) {
                 $oldPicture = Str::after($oldPicture, '/storage/');
                 Storage::disk('public')->delete($oldPicture);
@@ -31,13 +32,10 @@ class ConfigController extends Controller
             $savePath = 'system/' . $fileName;
             // Web 访问路径
             $webPath = '/storage/' . $savePath;
-            if (Storage::disk('public')->has($savePath)) {
-                Storage::delete($savePath);
-            }
             // 否则执行保存操作，保存成功将访问路径返回给调用方
-            if ($picture->storePubliclyAs('system', $fileName, ['disk' => 'public'])) {
-                $setting->value = array_merge($setting->value, ['logo' => $webPath]);
-                $setting->save();
+            if ($picture->storeAs('system', $fileName, ['disk' => 'public'])) {
+                DB::table('configs')->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
+
                 return response()->json(compact('webPath','savePath'));
             }
             abort(500);
@@ -46,82 +44,91 @@ class ConfigController extends Controller
         }
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
-        $setting = Config::where('name', 'setting')->first();
+        $setting = configs();
 
         return view('admin.config.index', ['setting' => $setting]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $field = $request->all();
-        Config::where('name', 'setting')->update(['value' => $field]);
+        $fields = $request->only(['site_name', 'url', 'logo', 'keywords', 'description']);
+        foreach ($fields as $key => $field) {
+            DB::table('configs')->where('name', $key)->update(
+                [
+                    'value' => $field,
+                    'updated_at' => time()
+                ]
+            );
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Config  $config
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Config $config)
+    public function configs()
     {
-        //
+        $configs = DB::table('configs')->get();
+
+        return view('admin.config.configs', ['configs' => $configs]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Config  $config
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Config $config)
+    public function createConfigs(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            $fields = $request->only(['name', 'value']);
+            $fields['created_at'] = $fields['updated_at'] = time();
+
+            $res = DB::table('configs')->insert($fields);
+
+            return response()->json($res);
+        }
+
+        return view('admin.config.create');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Config  $config
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Config $config)
+    public function storeConfigs(Request $request)
     {
-        //
+        $fields = $request->all();
+        $res = DB::table('configs')->where('id', $fields['id'])->update([$fields['field'] => $fields['value'], 'updated_at' => time()]);
+
+        return response()->json($res);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\Config  $config
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Config $config)
+    public function putConfigsFile()
     {
-        //
+        $configsPath = config_path() . '/configs.php';
+        $this->deleteConfigsFile();
+
+        $configs = DB::table('configs')->pluck('value', 'name')->toArray();
+        File::put($configsPath, '<?php return '.var_export($configs, true).';'.PHP_EOL);
+
+        $this->configCache();
+    }
+
+    public function deleteConfigsFile()
+    {
+        $configsPath = config_path() . '/configs.php';
+        if (File::exists($configsPath)) {
+            File::delete($configsPath);
+        }
+    }
+
+    public function configCache()
+    {
+        Artisan::call('config:cache');
+    }
+
+    public function configClear()
+    {
+        Artisan::call('config:clear');
+    }
+
+    public function routeCache()
+    {
+        Artisan::call('route:cache');
+    }
+
+    public function routeClear()
+    {
+        Artisan::call('route:clear');
     }
 }

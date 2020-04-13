@@ -43,5 +43,13 @@ class AdminMenuSeeder extends Seeder
         $settingMenu->href = 'admin/setting';
         $settingMenu->save();
 
+        $configsMenu = new AdminMenu();
+        $configsMenu->pid = $sysMenu->id;
+        $configsMenu->title_ug = 'configs باشقۇرۇش';
+        $configsMenu->title_cn = 'configs设置';
+        $configsMenu->icon = 'fa fa-gear';
+        $configsMenu->href = 'admin/configs';
+        $configsMenu->save();
+
     }
 }

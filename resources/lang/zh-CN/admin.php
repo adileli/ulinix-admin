@@ -15,6 +15,8 @@ return [
     'meta_description' => 'META描述',
     'upload_image' => '上传图片',
     'create_admin' => '添加管理员',
+    'configs_name' => '名称',
+    'configs_value' => '值',
     'form' => [
         'success' => '成功',
         'error' => '失败',
@@ -45,5 +47,14 @@ return [
     ],
     'tip' => [
         'password_empty' => '如果不需要更改密码请留空',
+    ],
+    'cache' => [
+        'zone' => '缓存管理',
+        'put_file' => '生成 configs 文件',
+        'delete_file' => '删除 configs 文件',
+        'cache_config' => '缓存 configs',
+        'clear_config' => '清空 configs 缓存',
+        'cache_route' => '缓存路由',
+        'clear_route' => '清空路由缓存',
     ]
 ];

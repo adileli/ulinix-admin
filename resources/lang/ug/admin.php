@@ -15,6 +15,8 @@ return [
     'meta_description' => 'توربەت چۈشەندۈرۈش META',
     'upload_image' => 'رەسىم يوللاش',
     'create_admin' => 'باشقۇرغۇچى قوشۇش',
+    'configs_name' => 'نامى',
+    'configs_value' => 'قىممىتى',
     'form' => [
         'success' => 'مۇۋاپىقىيەتلىك بولدى',
         'error' => 'مەغلۇب بولدى',
@@ -44,6 +46,15 @@ return [
         'delete' => 'راستىنلا ئۆچۈرەمسىز؟'
     ],
     'tip' => [
-    'password_empty' => 'ئەگەر مەخپى نۇمۇرنى ئۆزگەرتىشنىڭ ھاجىتى بولمىسا،بوش قالدۇرۇڭ',
-]
+        'password_empty' => 'ئەگەر مەخپى نۇمۇرنى ئۆزگەرتىشنىڭ ھاجىتى بولمىسا،بوش قالدۇرۇڭ',
+    ],
+    'cache' => [
+        'zone' => '缓存管理',
+        'put_file' => '生成 configs 文件',
+        'delete_file' => '删除 configs 文件',
+        'cache_config' => '缓存 configs',
+        'clear_config' => '清空 configs 缓存',
+        'cache_route' => '缓存路由',
+        'clear_route' => '清空路由缓存',
+    ]
 ];

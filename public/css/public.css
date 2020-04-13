@@ -20,6 +20,10 @@ html, body {
     src: local("alkatip basma tom"),url(/fonts/ALKATIPBasmaTom.ttf) format("opentype"); /* non-IE */
 }
 
+.layuimini-main {
+    padding-bottom: 50px;
+}
+
 .pa-5 {
     padding: 5px;
 }

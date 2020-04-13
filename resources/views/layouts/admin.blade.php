@@ -3,9 +3,9 @@
 <?php $direction = in_array(app()->getLocale(), ['ug']) ? 'rtl' : ''; $isRtl = in_array(app()->getLocale(), ['ug']) ? true : false;?>
 <head>
     <meta charset="utf-8">
-    <title>{{ Arr::get($setting, 'value.sitename', config('app.name', 'Ulinix')) }}</title>
-    <meta name="keywords" content="{{ Arr::get($setting, 'value.keywords', '') }}">
-    <meta name="description" content="{{ Arr::get($setting, 'value.description', '') }}">
+    <title>{{ Arr::get($setting, 'site_name', config('app.name', 'Ulinix')) }}</title>
+    <meta name="keywords" content="{{ Arr::get($setting, 'keywords', '') }}">
+    <meta name="description" content="{{ Arr::get($setting, 'description', '') }}">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -55,9 +55,9 @@
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
                 </li>
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-                </li>
+{{--                <li class="layui-nav-item" lay-unselect>--}}
+{{--                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>--}}
+{{--                </li>--}}
                 <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>

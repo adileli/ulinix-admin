@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
 use App\Model\AdminMenu;
-use App\Model\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +14,8 @@ class IndexController extends Controller
 {
     public function admin()
     {
-        $setting = Config::where('name', 'setting')->first();
+        $setting = configs();
+
         return view('layouts.admin', ['setting' => $setting]);
     }
 
@@ -34,15 +34,15 @@ class IndexController extends Controller
     }
 
     public function getSystemInit(){
-        $setting = Config::where('name', 'setting')->first();
+        $setting = configs();
 
         $homeInfo = [
             'title' => trans('admin.homepage'),
             'href'  => route('admin.index'),
         ];
         $logoInfo = [
-            'title' => Arr::get($setting, 'value.sitename', config('app.name')),
-            'image' => asset(Arr::get($setting, 'value.logo', 'images/logo.png')),
+            'title' => Arr::get($setting, 'site_name', config('app.name')),
+            'image' => asset(Arr::get($setting, 'logo', 'images/logo.png')),
         ];
         $menuInfo = $this->getMenuList();
         $systemInit = [

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Model\Config;
 
 class ConfigSeeder extends Seeder
 {
@@ -12,12 +11,12 @@ class ConfigSeeder extends Seeder
      */
     public function run()
     {
-        $sitename = new Config();
-        $sitename->name = 'setting';
-        $sitename->value = [
-            'sitename' => \config('app.name'),
-            'url' => \config('app.url'),
-        ];
-        $sitename->save();
+        \Illuminate\Support\Facades\DB::table('configs')->insert([
+            ['name' => 'site_name', 'value' => \config('app.name'), 'created_at' => time(), 'updated_at' => time()],
+            ['name' => 'logo', 'value' => 'images/logo.png', 'created_at' => time(), 'updated_at' => time()],
+            ['name' => 'url', 'value' => \config('app.url'), 'created_at' => time(), 'updated_at' => time()],
+            ['name' => 'keywords', 'value' => '', 'created_at' => time(), 'updated_at' => time()],
+            ['name' => 'description', 'value' => '', 'created_at' => time(), 'updated_at' => time()],
+        ]);
     }
 }
