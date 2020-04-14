@@ -87,7 +87,6 @@
             let url = `{{ route('admin.login') }}`;
 
             $.post(url, data, res => {
-                console.log(res)
                 window.location = `{{ route('admin.admin') }}`;
             }).fail((res) => {
                 layer.msg(res.responseJSON.errors.name[0])

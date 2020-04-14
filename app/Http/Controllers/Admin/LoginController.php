@@ -36,4 +36,9 @@ class LoginController extends Controller
     {
         return route('admin.index');
     }
+
+    protected function loggedOut(Request $request)
+    {
+        return route('admin.login');
+    }
 }
