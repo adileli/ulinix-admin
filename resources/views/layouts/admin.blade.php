@@ -105,6 +105,7 @@
 
 <script src="{{ asset('lib/jquery-3.4.1/jquery-3.4.1.min.js') }}" charset="utf-8"></script>
 <script src="{{ asset('lib/layui-v2.5.5/layui.js') }}" charset="utf-8"></script>
+<script src="{{ asset('lib/uyghur-input.js') }}" charset="utf-8"></script>
 <script>
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
@@ -171,6 +172,47 @@
                 window.location.reload();
             })
         });
+    });
+</script>
+
+<script>
+    let d = $('<div>').addClass('input-mode').html('<i class="fa fa-window-close js-input-mode-close"></i> <i class="fa fa-text-width js-switch-direction"></i> <i class="fa js-switch-input-mode">A</i>'),
+        $html = $('html');
+
+    $html.on('focus', 'input', function () {
+        let $this = $(this);
+        $this.after(d);
+    });
+
+    $html.on('click', '.input-mode .js-switch-direction', function () {
+        let $this = $(this),
+            $input = $this.parent('.input-mode').prev('input'),
+            direction = $input.css('direction');
+
+        if (direction === 'rtl') {
+            direction = 'ltr'
+        } else {
+            direction = 'rtl'
+        }
+
+        $input.css('direction', direction);
+    });
+
+    $html.on('click', '.input-mode .js-input-mode-close', function () {
+        d.remove();
+    });
+
+    $html.on('click', '.input-mode .js-switch-input-mode', function () {
+        let $this = $(this),
+            $input = $this.parent('.input-mode').prev('input');
+
+        if ($input.hasClass('input-ug')) {
+            $this.html('A');
+            $input.removeAttr('onkeypress').removeClass('input-ug');
+        } else {
+            $this.html('ئۇ');
+            $input.attr('onkeypress', 'return addchar(this, event);').addClass('input-ug');
+        }
     });
 </script>
 
