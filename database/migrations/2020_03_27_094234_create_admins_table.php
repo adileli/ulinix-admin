@@ -16,6 +16,7 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('nickname');
             $table->string('email')->unique();
             $table->string('locale', 20)->default('ug');
             $table->tinyInteger('is_super_admin')->default(0);

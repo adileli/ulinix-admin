@@ -2,6 +2,7 @@
 
 return [
     'name' => '用户名',
+    'nickname' => '真实姓名',
     'email' => '邮箱',
     'password' => '密码',
     'remember_me' => '记住我',

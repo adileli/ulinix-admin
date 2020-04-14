@@ -34,6 +34,7 @@
             cols: [[
                 {field: 'id', width: 80, title: 'ID'},
                 {field: 'name', minWidth: 100, title: '@lang('admin.name')'},
+                {field: 'nickname', minWidth: 100, title: '@lang('admin.nickname')'},
                 {field: 'email', title: '@lang('admin.email')', minWidth: 150},
                 {title: '@lang('admin.form.operating')', width: 160, templet: '#operating', align: "center"}
             ]],

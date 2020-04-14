@@ -37,7 +37,7 @@ class AdminMenuSeeder extends Seeder
 
         $settingMenu = new AdminMenu();
         $settingMenu->pid = $sysMenu->id;
-        $settingMenu->title_ug = 'بەت باشقۇرۇش';
+        $settingMenu->title_ug = 'بېكەت باشقۇرۇش';
         $settingMenu->title_cn = '站点设置';
         $settingMenu->icon = 'fa fa-sliders';
         $settingMenu->href = 'admin/setting';

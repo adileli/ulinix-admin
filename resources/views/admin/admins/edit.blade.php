@@ -7,6 +7,12 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label required">{{ __('admin.nickname') }}</label>
+            <div class="layui-input-block">
+                <input type="text" name="nickname" lay-verify="required" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.nickname')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.nickname')]) }}" value="{{ $admin['nickname'] }}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label required">{{ __('admin.email') }}</label>
             <div class="layui-input-block">
                 <input type="email" name="email" lay-verify="required|email" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.email')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.email')]) }}" value="{{ $admin['email'] }}" class="layui-input">

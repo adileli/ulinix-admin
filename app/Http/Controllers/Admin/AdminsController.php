@@ -35,6 +35,7 @@ class AdminsController extends Controller
 
         $cols = [
             'name' => 'required',
+            'nickname' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             Admin::CREATED_AT => '',
@@ -85,6 +86,7 @@ class AdminsController extends Controller
 
         $cols = [
             'name' => 'required',
+            'nickname' => 'required',
             'email' => 'required|email',
             Admin::UPDATED_AT => '',
         ];
