@@ -115,6 +115,10 @@ html, body {
     padding-right: 10px;
 }
 
+.rtl .layui-form-select .layui-input {
+    padding-right: 30px;
+}
+
 .rtl .layui-layer-dialog .layui-layer-padding {
     padding: 20px 55px 20px 20px
 }

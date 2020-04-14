@@ -179,7 +179,7 @@
     let d = $('<div>').addClass('input-mode layui-bg-green').html('<i class="fa fa-window-close js-input-mode-close"></i> <i class="fa fa-text-width js-switch-direction"></i> <i class="fa js-switch-input-mode">A</i>'),
         $html = $('html');
 
-    $html.on('focus', 'input', function () {
+    $html.on('focus', 'input:not(".disable-input-mode, .layui-unselect")', function () {
         let $this = $(this);
         $this.after(d);
     });
