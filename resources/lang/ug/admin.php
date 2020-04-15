@@ -19,6 +19,7 @@ return [
     'configs_name' => 'نامى',
     'configs_value' => 'قىممىتى',
     'configs_type' => 'تۈرى',
+    'configs_remark' => 'ئىزاھات',
     'form' => [
         'success' => 'مۇۋاپىقىيەتلىك بولدى',
         'error' => 'مەغلۇب بولدى',

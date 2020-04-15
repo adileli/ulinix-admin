@@ -80,7 +80,7 @@ class ConfigController extends Controller
         $type = $request->get('type', 'system');
 
         if ($request->isMethod('post')) {
-            $fields = $request->only(['name', 'value', 'type']);
+            $fields = $request->only(['name', 'value', 'type', 'remark']);
 
             $fields['created_at'] = $fields['updated_at'] = time();
 

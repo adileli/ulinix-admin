@@ -19,6 +19,7 @@ return [
     'configs_name' => '名称',
     'configs_value' => '值',
     'configs_type' => '类型',
+    'configs_remark' => '备注',
     'form' => [
         'success' => '成功',
         'error' => '失败',

@@ -53,6 +53,7 @@
                 {field:'id', align: 'center', width:80, title: 'ID'},
                 {field:'name', align: 'center', title: '@lang('admin.configs_name')', event: 'name', style:'cursor: pointer;'},
                 {field:'value', align: 'center', title: '@lang('admin.configs_value')', event: 'value', style:'cursor: pointer;'},
+                {field:'remark', align: 'center', title: '@lang('admin.configs_remark')'},
                 {title: '@lang('admin.form.operating')', templet: '#operatingTableBar', width: 80},
             ]],
             page: true

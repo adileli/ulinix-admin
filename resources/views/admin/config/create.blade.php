@@ -22,6 +22,13 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.configs_remark') }}</label>
+            <div class="layui-input-block">
+                <input type="text" name="remark" autocomplete="off" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.configs_remark')]) }}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="save">{{ __('admin.form.submit') }}</button>
             </div>
