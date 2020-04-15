@@ -18,6 +18,7 @@ return [
     'create_admin' => 'باشقۇرغۇچى قوشۇش',
     'configs_name' => 'نامى',
     'configs_value' => 'قىممىتى',
+    'configs_type' => 'تۈرى',
     'form' => [
         'success' => 'مۇۋاپىقىيەتلىك بولدى',
         'error' => 'مەغلۇب بولدى',

@@ -1,10 +1,17 @@
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
+        <fieldset class="layui-elem-field">
+            <legend>{{ __('admin.configs_type') }}</legend>
+            @foreach($types as $type)
+                <a class="layui-btn layui-btn-sm @if($type == request()->get('type', 'system')) layui-btn-disabled @endif" layuimini-href="{{ 'admin/configs?type=' . $type }}" href="javascript:;" target="_self">{{ $type }}</a>
+            @endforeach
+        </fieldset>
+        <hr>
         <div class="layui-form layuimini-form">
 
             <script type="text/html" id="toolbar">
                 <div class="layui-btn-container">
-                    <button class="layui-btn data-add-btn" lay-event="create" data-url="{{ route('admin.configs.create') }}"><i class="fa fa-plus"></i> {{ __('admin.form.create') }} </button>
+                    <button class="layui-btn data-add-btn" lay-event="create" data-url="{{ route('admin.configs.create', ['type' => request()->get('type', 'system')]) }}"><i class="fa fa-plus"></i> {{ __('admin.form.create') }} </button>
                 </div>
             </script>
 
@@ -71,7 +78,7 @@
                     var index = layer.open({
                         type: 1,
                         maxmin: true,
-                        area: ['50%', '50%'],
+                        area: ['50%', '60%'],
                         title: '@lang('admin.create_admin')',
                         content: response
                     });

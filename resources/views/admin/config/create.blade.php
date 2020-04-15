@@ -15,6 +15,13 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.configs_type') }}</label>
+            <div class="layui-input-block">
+                <input type="text" name="type" lay-verify="required" autocomplete="off" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.configs_type')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.configs_type')]) }}" class="layui-input" value="{{ $type }}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="save">{{ __('admin.form.submit') }}</button>
             </div>

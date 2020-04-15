@@ -189,3 +189,12 @@ html, body {
     cursor: pointer;
     margin: 0 2px;
 }
+
+.rtl .layui-btn+.layui-btn {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.layui-elem-field {
+    padding: 10px 20px 20px;
+}

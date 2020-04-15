@@ -66,17 +66,22 @@ class ConfigController extends Controller
         }
     }
 
-    public function configs()
+    public function configs(Request $request)
     {
-        $configs = DB::table($this->tableName)->get();
+        $type = $request->get('type', 'system');
+        $configs = DB::table($this->tableName)->where('type', $type)->get();
+        $types = DB::table($this->tableName)->select('type')->distinct()->get()->pluck('type');
 
-        return view('admin.config.configs', ['configs' => $configs]);
+        return view('admin.config.configs', ['configs' => $configs, 'types' => $types]);
     }
 
     public function createConfigs(Request $request)
     {
+        $type = $request->get('type', 'system');
+
         if ($request->isMethod('post')) {
-            $fields = $request->only(['name', 'value']);
+            $fields = $request->only(['name', 'value', 'type']);
+
             $fields['created_at'] = $fields['updated_at'] = time();
 
             $res = DB::table($this->tableName)->insert($fields);
@@ -84,7 +89,7 @@ class ConfigController extends Controller
             return response()->json($res);
         }
 
-        return view('admin.config.create');
+        return view('admin.config.create', ['type' => $type]);
     }
 
     public function deleteConfigs($id)
