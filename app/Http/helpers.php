@@ -8,9 +8,15 @@ if (! function_exists('configs')) {
         if (config('configs')) {
             $configs = config('configs');
         } else {
-            $configs = DB::table('configs')->pluck('value', 'name')->toArray();
+            $configs = DB::table('configs')
+                ->get()
+                ->groupBy('type')
+                ->map(function ($item) {
+                    return $item->pluck('value', 'name')->all();
+                })
+                ->toArray();
         }
 
-        return $key == null ? $configs : $configs[$key] ?? '';
+        return $key == null ? $configs : \Illuminate\Support\Arr::get($configs, $key) ?? '';
     }
 }

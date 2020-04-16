@@ -18,6 +18,7 @@
             <table class="layui-hide" id="configs" lay-filter="configs" data-url="{{ route('admin.configs') }}"></table>
 
             <script type="text/html" id="operatingTableBar">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">{{ __('admin.form.edit') }}</a>
                 <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">{{ __('admin.form.delete') }}</a>
             </script>
 
@@ -51,10 +52,12 @@
             toolbar: '#toolbar',
             cols: [[
                 {field:'id', align: 'center', width:80, title: 'ID'},
-                {field:'name', align: 'center', title: '@lang('admin.configs_name')', event: 'name', style:'cursor: pointer;'},
-                {field:'value', align: 'center', title: '@lang('admin.configs_value')', event: 'value', style:'cursor: pointer;'},
-                {field:'remark', align: 'center', title: '@lang('admin.configs_remark')'},
-                {title: '@lang('admin.form.operating')', templet: '#operatingTableBar', width: 80},
+                {field:'title_ug', title: '@lang('admin.title_ug')'},
+                {field:'title_cn', title: '@lang('admin.title_cn')'},
+                {field:'name', title: '@lang('admin.configs_name')', event: 'name', style:'cursor: pointer;'},
+                {field:'value', title: '@lang('admin.configs_value')', event: 'value', style:'cursor: pointer;'},
+                {field:'remark', title: '@lang('admin.configs_remark')'},
+                {title: '@lang('admin.form.operating')', templet: '#operatingTableBar', width: 150},
             ]],
             page: true
         });
@@ -134,6 +137,22 @@
                         layer.msg('@lang('admin.form.success')', {icon: 1})
                     }).fail(res => {
                         layer.msg('@lang('admin.form.error')', {icon: 2})
+                    });
+                });
+            } else if (obj.event === 'edit') {
+                let $this = $(this),
+                    url = 'admin/configs/edit/' + data.id;
+
+                $.get(url, {}, function(response){
+                    var index = layer.open({
+                        type: 1,
+                        area: ['50%', '60%'],
+                        maxmin: true,
+                        title: '@lang('admin.form.edit')',
+                        content: response
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
                     });
                 });
             }

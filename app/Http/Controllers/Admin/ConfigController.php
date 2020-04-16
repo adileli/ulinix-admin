@@ -22,7 +22,7 @@ class ConfigController extends Controller
             if (!$picture->isValid()) {
                 abort(400);
             }
-            $oldPicture = Arr::get(configs(), 'logo', false);
+            $oldPicture = Arr::get(configs(), 'system.logo', false);
             if ($oldPicture) {
                 $oldPicture = Str::after($oldPicture, '/storage/');
                 Storage::disk('public')->delete($oldPicture);
@@ -36,7 +36,7 @@ class ConfigController extends Controller
             $webPath = '/storage/' . $savePath;
             // 否则执行保存操作，保存成功将访问路径返回给调用方
             if ($picture->storeAs('system', $fileName, ['disk' => 'public'])) {
-                DB::table($this->tableName)->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
+                DB::table($this->tableName)->where('type', 'system')->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
 
                 return response()->json(compact('webPath','savePath'));
             }
@@ -48,7 +48,7 @@ class ConfigController extends Controller
 
     public function index()
     {
-        $setting = configs();
+        $setting = DB::table($this->tableName)->where('type', 'system')->get()->keyBy('name')->toArray();
 
         return view('admin.config.index', ['setting' => $setting]);
     }
@@ -57,7 +57,7 @@ class ConfigController extends Controller
     {
         $fields = $request->only(['site_name', 'url', 'logo', 'keywords', 'description']);
         foreach ($fields as $key => $field) {
-            DB::table($this->tableName)->where('name', $key)->update(
+            DB::table($this->tableName)->where('type', 'system')->where('name', $key)->update(
                 [
                     'value' => $field,
                     'updated_at' => time()
@@ -80,7 +80,7 @@ class ConfigController extends Controller
         $type = $request->get('type', 'system');
 
         if ($request->isMethod('post')) {
-            $fields = $request->only(['name', 'value', 'type', 'remark']);
+            $fields = $request->only(['title_cn', 'title_ug', 'name', 'value', 'type', 'remark']);
 
             $fields['created_at'] = $fields['updated_at'] = time();
 
@@ -98,6 +98,23 @@ class ConfigController extends Controller
         return response()->json($result);
     }
 
+    public function editConfigs(Request $request, $id)
+    {
+        $config = DB::table($this->tableName)->find($id);
+
+        if ($request->isMethod('post')) {
+            $fields = $request->only(['title_cn', 'title_ug', 'name', 'value', 'type', 'remark']);
+
+            $fields['updated_at'] = time();
+
+            $res = DB::table($this->tableName)->where('id', $id)->update($fields);
+
+            return response()->json($res);
+        }
+
+        return view('admin.config.edit', ['config' => $config]);
+    }
+
     public function storeConfigs(Request $request)
     {
         $fields = $request->all();
@@ -111,10 +128,14 @@ class ConfigController extends Controller
         $configsPath = config_path() . '/configs.php';
         $this->deleteConfigsFile();
 
-        $configs = DB::table($this->tableName)->pluck('value', 'name')->toArray();
+        $configs = DB::table('configs')
+            ->get()
+            ->groupBy('type')
+            ->map(function ($item) {
+                return $item->pluck('value', 'name')->all();
+            })
+            ->toArray();
         File::put($configsPath, '<?php return '.var_export($configs, true).';'.PHP_EOL);
-
-        $this->configCache();
     }
 
     public function deleteConfigsFile()

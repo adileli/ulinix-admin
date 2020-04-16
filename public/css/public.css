@@ -198,3 +198,7 @@ html, body {
 .layui-elem-field {
     padding: 10px 20px 20px;
 }
+
+.rtl .layui-table th {
+    text-align: right;
+}

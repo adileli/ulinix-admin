@@ -38,6 +38,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/configs', 'ConfigController@storeConfigs')->name('configs');
     Route::any('/configs/create', 'ConfigController@createConfigs')->name('configs.create');
     Route::any('/configs/delete/{id}', 'ConfigController@deleteConfigs')->name('configs.delete');
+    Route::any('/configs/edit/{id}', 'ConfigController@editConfigs')->name('configs.edit');
 
     Route::post('/upload/logo', 'ConfigController@uploadLogo')->name('uploadLogo');
     Route::post('/put-configs-file', 'ConfigController@putConfigsFile')->name('putConfigsFile');

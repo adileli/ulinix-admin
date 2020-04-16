@@ -1,6 +1,20 @@
 <div class="layuimini-main">
     <form class="layui-form" action="{{ route('admin.configs.create') }}" method="post">
         <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.title_cn') }}</label>
+            <div class="layui-input-block">
+                <input type="text" name="title_cn" lay-verify="required" autocomplete="off" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.title_cn')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.title_cn')]) }}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">{{ __('admin.title_ug') }}</label>
+            <div class="layui-input-block">
+                <input type="text" name="title_ug" lay-verify="required" autocomplete="off" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.title_ug')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.title_ug')]) }}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">{{ __('admin.configs_name') }}</label>
             <div class="layui-input-block">
                 <input type="text" name="name" lay-verify="required" autocomplete="off" lay-reqtext="{{ __('validation.required', ['attribute' => __('admin.configs_name')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.configs_name')]) }}" class="layui-input">

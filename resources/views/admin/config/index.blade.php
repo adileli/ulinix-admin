@@ -1,43 +1,44 @@
 <style>
     .layui-form-item .layui-input-company {width: auto;padding-right: 10px;line-height: 38px;}
 </style>
+<?php $titleName = app()->getLocale() == 'zh-CN' ? 'title_cn' : 'title_ug'; ?>
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
 
         <div class="layui-form layuimini-form">
             <div class="layui-form-item">
-                <label class="layui-form-label required">{{ __('admin.site_name') }}</label>
+                <label class="layui-form-label required">{{ __($setting['site_name'][$titleName]) }}</label>
                 <div class="layui-input-block">
-                    <input type="text" name="site_name" lay-verify="required" lay-reqtext="{{ __('validation.filled', ['attribute' => __('admin.site_name')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.site_name')]) }}" value="{{ Arr::get($setting, 'site_name', '') }}" class="layui-input">
+                    <input type="text" name="site_name" lay-verify="required" lay-reqtext="{{ __('validation.filled', ['attribute' => __($setting['site_name'][$titleName])]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __($setting['site_name'][$titleName])]) }}" value="{{ Arr::get($setting, 'site_name.value', '') }}" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label required">{{ __('admin.url') }}</label>
+                <label class="layui-form-label required">{{ __($setting['url'][$titleName]) }}</label>
                 <div class="layui-input-block">
-                    <input type="text" name="url" lay-verify="required" lay-reqtext="{{ __('validation.filled', ['attribute' => __('admin.url')]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __('admin.url')]) }}" value="{{ Arr::get($setting, 'url', '') }}" class="layui-input">
+                    <input type="text" name="url" lay-verify="required" lay-reqtext="{{ __('validation.filled', ['attribute' => __($setting['url'][$titleName])]) }}" placeholder="{{ __('validation.placeholder', ['attribute' => __($setting['url'][$titleName])]) }}" value="{{ Arr::get($setting, 'url.value', '') }}" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">{{ __('admin.logo') }}</label>
+                <label class="layui-form-label">{{ __($setting['logo'][$titleName]) }}</label>
                 <div class="layui-input-block">
                     <a type="button" class="layui-btn" id="logo">
                         <i class="fa fa-cloud-upload"></i> {{ __('admin.upload_image') }}
                     </a>
-                    <img id="logo-preview" src="{{ asset(Arr::get($setting, 'logo', '')) }}" alt="logo" width="48">
-                    <input id="logo-input" type="hidden" name="logo" value="{{ Arr::get($setting, 'logo', '') }}">
+                    <img id="logo-preview" src="{{ asset(Arr::get($setting, 'logo.value', '')) }}" alt="logo" width="48">
+                    <input id="logo-input" type="hidden" name="logo" value="{{ Arr::get($setting, 'logo.value', '') }}">
                 </div>
             </div>
 
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">{{ __('admin.meta_keywords') }}</label>
+                <label class="layui-form-label">{{ __($setting['keywords'][$titleName]) }}</label>
                 <div class="layui-input-block">
-                    <textarea name="keywords" class="layui-textarea">{{ Arr::get($setting, 'keywords', '') }}</textarea>
+                    <textarea name="keywords" class="layui-textarea">{{ Arr::get($setting, 'keywords.value', '') }}</textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">{{ __('admin.meta_description') }}</label>
+                <label class="layui-form-label">{{ __($setting['description'][$titleName]) }}</label>
                 <div class="layui-input-block">
-                    <textarea name="description" class="layui-textarea">{{ Arr::get($setting, 'description', '') }}</textarea>
+                    <textarea name="description" class="layui-textarea">{{ Arr::get($setting, 'description.value', '') }}</textarea>
                 </div>
             </div>
 

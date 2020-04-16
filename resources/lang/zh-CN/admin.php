@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title_cn' => '中文名称',
+    'title_ug' => '维文名称',
     'name' => '用户名',
     'nickname' => '真实姓名',
     'email' => '邮箱',

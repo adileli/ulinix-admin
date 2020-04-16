@@ -41,8 +41,8 @@ class IndexController extends Controller
             'href'  => route('admin.index'),
         ];
         $logoInfo = [
-            'title' => Arr::get($setting, 'site_name', config('app.name')),
-            'image' => asset(Arr::get($setting, 'logo', 'images/logo.png')),
+            'title' => Arr::get($setting, 'system.site_name', config('app.name')),
+            'image' => asset(Arr::get($setting, 'system.logo', 'images/logo.png')),
         ];
         $menuInfo = $this->getMenuList();
         $systemInit = [

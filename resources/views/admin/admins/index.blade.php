@@ -10,7 +10,7 @@
         <table class="layui-hide" id="admins-table" lay-filter="admins-table-filter"></table>
 
         <script type="text/html" id="operating">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">{{ __('admin.form.edit') }}</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">{{ __('admin.form.edit') }}</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">{{ __('admin.form.delete') }}</a>
         </script>
 
