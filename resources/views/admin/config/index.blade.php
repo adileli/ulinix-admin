@@ -65,8 +65,8 @@
             elem: '#logo'
             ,url: `{{ route('admin.uploadLogo') }}`
             ,done: function(res){
-                $('#logo-preview').attr('src', res.webPath);
-                $('#logo-input').val(res.webPath);
+                $('#logo-preview').attr('src', res.savePath);
+                $('#logo-input').val(res.savePath);
             }
             ,error: function(){
                 parent.layer.msg(`{{ __('admin.form.error') }}`);

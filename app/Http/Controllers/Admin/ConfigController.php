@@ -30,15 +30,12 @@ class ConfigController extends Controller
 
             $fileName = 'logo.'.$picture->getClientOriginalExtension();
 
-            // 图片保存路径
-            $savePath = 'system/' . $fileName;
-            // Web 访问路径
-            $webPath = '/storage/' . $savePath;
+            $savePath = '/storage/system/' . $fileName;
             // 否则执行保存操作，保存成功将访问路径返回给调用方
             if ($picture->storeAs('system', $fileName, ['disk' => 'public'])) {
-                DB::table($this->tableName)->where('type', 'system')->where('name', 'logo')->update(['value' => $webPath, 'updated_at' => time()]);
+                DB::table($this->tableName)->where('type', 'system')->where('name', 'logo')->update(['value' => $savePath, 'updated_at' => time()]);
 
-                return response()->json(compact('webPath','savePath'));
+                return response()->json(compact('savePath'));
             }
             abort(500);
         } else {
