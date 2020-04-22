@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $dateFormat = 'U';
+
+    public function generateToken()
+    {
+        $token = Str::random(60);
+        $this->api_token = hash('sha256', $token);
+        $this->save();
+
+        return $token;
+    }
 }
